@@ -16,6 +16,7 @@
         <module>Auth-Service</module>
         <module>CodeHosting-CICD</module>
         <module>CodeHosting-Activity</module>
+        <module>CodeHosting-GitlabServices</module>
     </modules>
 
     <parent>
