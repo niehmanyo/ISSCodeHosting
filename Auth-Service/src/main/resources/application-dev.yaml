@@ -1,0 +1,8 @@
+iss:
+  db:
+    host: mysql
+    pw: 123
+
+  redis:
+    host: localhost
+    port: 6379

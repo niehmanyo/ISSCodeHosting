@@ -1,0 +1,28 @@
+server:
+  port: 8081
+spring:
+  redis:
+    host: ${iss.redis.host}
+    port: ${iss.redis.port}
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp连接池支持
+iss:
+  swagger:
+    title: Auth Service Documentation
+    package: com.iss.auth.controller
+  db:
+    database: iss-user
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+oauth2:
+  client:
+    registration:
+      github:
+        user-info-uri: https://api.github.com/user
+        token-uri: https://github.com/login/oauth/access_token
+        client-id: Ov23liEXcuYBqD3J7sSz
+        client-secret: 8432a328929b1482d3004b746eb7a48e37da67af
