@@ -1,0 +1,20 @@
+server:
+  port: 8082
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp连接池支持
+iss:
+  swagger:
+    title: Gitlab Service Documentation
+    package: com.iss.gitlab.controller
+  db:
+    database: iss-gitlab
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+
+  gitlab:
+    host-url: http://43.134.14.89/ # http://100.107.234.78/
+    personal-access-token: glpat-giF_1KzvPbB5-PYesgGT # glpat-ASRzX2MQ2itStm2DtLD1

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iss.team.mapper.TeamMapper">
+    <select id="getAllTeams" resultType="com.iss.team.domain.entity.Team">
+        select * from iss_team where course_name = #{courseName};
+    </select>
+
+    <select id="findUserByTeamId" resultType="com.iss.team.domain.vo.StudentVO">
+        select student_name,email from iss_student_team where team_id = #{team_id};
+    </select>
+
+    <select id="getCapacityByTeamId" resultType="int">
+        select capacity from iss_team where iss_team.id = #{teamId};
+    </select>
+
+    <insert id="joinTeam">
+        insert into iss_student_team (student_name,email,team_id,create_time,update_time)
+        values (#{studentName},#{email},#{teamId},NOW(),NOW());
+    </insert>
+
+    <select id="getProjectByTeamId" resultType="long">
+        select project_id from iss_team where id = #{teamId};
+    </select>
+
+    <insert id="createTeam">
+        insert into iss_team (team_name,course_name,major_name,capacity,created_time,deadline)
+        values (#{teamName},#{courseName},#{major},#{capacity},NOW(),#{deadline});
+    </insert>
+    
+    <select id="checkTeamId" resultType="long">
+        select id from iss_team where
+                                team_name = #{teamName} and
+                                course_name = #{courseName} ;
+    </select>
+
+    <delete id="leaveTeam">
+        delete from iss_student_team
+        where student_name = #{username} and team_id = #{teamId}
+    </delete>
+
+    <update id="updateTeamInfo">
+        update iss_team
+        set project_id = #{projectId},
+            project_url = #{projectUrl},
+            project_access_token = #{projectAccessToken}
+        where id = #{teamId}
+    </update>
+
+    <delete id="deleteTeam">
+        delete from iss_team
+        where id = #{teamId};
+    </delete>
+
+    <select id="checkIfExist" resultType="int">
+        select COUNT(*)
+        from iss_student_team
+        where student_name = #{username} and team_id = #{teamId}
+    </select>
+
+</mapper>

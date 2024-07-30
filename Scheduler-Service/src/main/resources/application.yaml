@@ -1,0 +1,16 @@
+server:
+  port: 8087
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp连接池支持
+iss:
+  swagger:
+    title: Scheduler Service Documentation
+    package: com.iss.scheduler.controller
+#  db:
+#    database: iss-task
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m

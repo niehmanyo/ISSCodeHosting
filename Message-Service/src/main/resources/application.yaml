@@ -1,0 +1,16 @@
+server:
+  port: 8088
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp连接池支持
+iss:
+  swagger:
+    title: Message Service Documentation
+    package: com.iss.message.controller
+  db:
+    database: iss-message
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m

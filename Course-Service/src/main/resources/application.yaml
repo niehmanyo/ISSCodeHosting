@@ -1,0 +1,16 @@
+server:
+  port: 8085
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp连接池支持
+iss:
+  swagger:
+    title: Course Service Documentation
+    package: com.iss.course.controller
+  db:
+    database: iss-course
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m

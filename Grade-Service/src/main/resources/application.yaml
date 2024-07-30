@@ -1,0 +1,20 @@
+server:
+  port: 8084
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp连接池支持
+iss:
+  swagger:
+    title: Grade Service Documentation
+    package: com.iss.grade.controller
+#  db:
+#    database: iss-grade
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+
+  gitlab:
+    host-url: http://100.107.234.78/
+    personal-access-token: glpat-ASRzX2MQ2itStm2DtLD1

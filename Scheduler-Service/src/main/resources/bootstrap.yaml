@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: scheduler-service # 微服务名称
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 43.134.14.89:8848 # 100.107.234.78:8848
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: shared-jdbc.yaml
+          - data-id: shared-log.yaml
+          - data-id: shared-swagger.yaml
+#          - data-id: shared-seata.yaml

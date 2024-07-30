@@ -1,0 +1,25 @@
+server:
+  port: 8086
+spring:
+  redis:
+    host: localhost
+    port: 6379
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp连接池支持
+iss:
+  swagger:
+    title: Team Service Documentation
+    package: com.iss.team.controller
+  db:
+    database: iss-team
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+  redis:
+    lock:
+      enabled: true # 开启锁

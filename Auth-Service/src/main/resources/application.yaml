@@ -1,0 +1,43 @@
+server:
+  port: 8081
+spring:
+  mail:
+    # 配置 SMTP 服务器地址
+    host: smtp.qq.com
+    # 发送者邮箱，已开通POP3/SMTP服务的邮箱，也就是你自己的
+    username: 2931833354@qq.com    #发送者邮箱，已开通POP3/SMTP服务的邮箱，也就是你自己的
+    # 配置密码，注意不是真正的密码，而是刚刚申请到的授权码
+    password: eztnhizyqryudede #申请到的授权码
+    # 端口号465或587（QQ邮箱发送邮件仅支持587端口协议）
+    port: 587
+    # 默认的邮件编码为UTF-8
+    default-encoding: UTF-8
+    # 配置SSL 加密工厂
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        #表示开启 DEBUG 模式，这样，邮件发送过程的日志会在控制台打印出来，方便排查错误
+#        debug: true
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp连接池支持
+iss:
+  swagger:
+    title: Auth Service Documentation
+    package: com.iss.auth.controller
+  db:
+    database: iss-user
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+oauth2:
+  client:
+    registration:
+      github:
+        user-info-uri: https://api.github.com/user
+        token-uri: https://github.com/login/oauth/access_token
+        client-id: Ov23liEXcuYBqD3J7sSz
+        client-secret: 8432a328929b1482d3004b746eb7a48e37da67af
