@@ -103,12 +103,6 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, GitlabProject
             projectVO.setUserName("root");
             projectVO.setProjectAccessToken(accessToken.getToken());
 
-            ProjectInfoDTO projectInfoDTO = new ProjectInfoDTO();
-            projectInfoDTO.setProjectId(project.getId());
-            projectInfoDTO.setTeamId(projectDTO.getTeamId());
-            projectInfoDTO.setProjectUrl(project.getWebUrl()+".git");
-            projectInfoDTO.setProjectAccessToken(accessToken.getToken());
-
             return projectVO;
         } catch (GitLabApiException e) {
             // Handle GitLab API exceptions

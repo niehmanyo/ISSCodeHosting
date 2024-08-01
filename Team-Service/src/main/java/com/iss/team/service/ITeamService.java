@@ -22,8 +22,6 @@ public interface ITeamService  {
 
     Long getProjectByTeamId(Long teamId);
 
-
-
     void createTeam(TeamDTO teamDTO);
 
     void deleteTeam(Long teamId);

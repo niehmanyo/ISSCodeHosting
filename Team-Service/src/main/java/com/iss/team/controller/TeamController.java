@@ -128,17 +128,6 @@ public class TeamController {
         }
     }
 
-    @ApiOperation("Update Team Info")
-    @PostMapping("update")
-    public Result<String> updateTeamInfo(@RequestBody ProjectInfoDTO projectInfoDTO){
-        try{
-            teamService.updateTeamInfo(projectInfoDTO.getTeamId(), projectInfoDTO.getProjectId(), projectInfoDTO.getProjectUrl(), projectInfoDTO.getProjectAccessToken());
-            return Result.success(TeamMessageConstant.UPDATE_TEAM_SUCCESS);
-        }catch (Exception e){
-            return Result.error(extractErrorCode(e.getMessage()),e.getMessage());
-        }
-    }
-
     @ApiOperation("Submit Team Project")
     @PostMapping("submit")
     public Result<String> submitTeamProject(@RequestParam Integer projectId,
