@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # copy jar
 echo "begin copy jar"
