@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:11-jre-slim
 FROM redis:latest
 
 LABEL authors="NIEWENYU"
