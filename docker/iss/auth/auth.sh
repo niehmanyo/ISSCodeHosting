@@ -2,5 +2,5 @@
 
 # copy jar
 echo "begin copy jar"
-cp -r ../Auth-Service/target/*.jar
-cp
+sudo cp ../../../Auth-Service/target/Auth-Service.jar ../auth/
+sudo docker build -t auth .
