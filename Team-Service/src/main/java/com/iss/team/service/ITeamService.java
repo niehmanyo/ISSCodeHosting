@@ -1,10 +1,12 @@
 package com.iss.team.service;
 
+
 import com.iss.team.domain.dto.StudentTeamDTO;
 import com.iss.team.domain.dto.TeamDTO;
 import com.iss.team.domain.entity.Team;
 import com.iss.team.domain.vo.StudentVO;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface ITeamService  {
@@ -19,6 +21,8 @@ public interface ITeamService  {
     void leaveTeam(StudentTeamDTO studentTeamDTO);
 
     Long getProjectByTeamId(Long teamId);
+
+
 
     void createTeam(TeamDTO teamDTO);
 

@@ -1,6 +1,7 @@
 package com.iss.gitlab.service.impl;
 
 import com.iss.common.constant.GitlabMessageConstant;
+import com.iss.gitlab.domain.vo.ProjectVO;
 import com.iss.gitlab.service.ITeamService;
 import lombok.RequiredArgsConstructor;
 import org.gitlab4j.api.GitLabApi;
@@ -9,6 +10,7 @@ import org.gitlab4j.api.models.AccessLevel;
 import org.gitlab4j.api.models.Member;
 import org.gitlab4j.api.models.ProjectGroup;
 import org.gitlab4j.api.models.User;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,6 +46,7 @@ public class TeamServiceImpl implements ITeamService {
      * then the password here is ""
      * */
     @Override
+    @Async
     public User createUser(String email,
                            String username,
                            String name) throws GitLabApiException{
@@ -60,6 +63,7 @@ public class TeamServiceImpl implements ITeamService {
     }
 
     @Override
+    @Async
     public void inviteUser(Long projectId, String email) throws GitLabApiException{
         try{
             User user = gitLabApi.getUserApi().getUserByEmail(email);
@@ -70,6 +74,7 @@ public class TeamServiceImpl implements ITeamService {
     }
 
     @Override
+    @Async
     public void removeUser(Long projectId, String email) throws GitLabApiException{
         try{
             User user = gitLabApi.getUserApi().getUserByEmail(email);
@@ -78,4 +83,6 @@ public class TeamServiceImpl implements ITeamService {
             throw new GitLabApiException(GitlabMessageConstant.REMOVE_USER_FAILED + ". " + e.getMessage());
         }
     }
+
+
 }

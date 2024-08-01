@@ -2,8 +2,6 @@ package com.iss.team.service.impl;
 
 import com.iss.api.client.GitlabClient;
 import com.iss.api.domain.dto.ProjectDTO;
-import com.iss.api.domain.vo.ProjectVO;
-import com.iss.common.result.Result;
 import com.iss.team.domain.dto.StudentTeamDTO;
 import com.iss.team.domain.dto.TeamDTO;
 import com.iss.team.domain.entity.Team;
@@ -13,6 +11,7 @@ import com.iss.team.mapper.TeamMapper;
 import com.iss.team.service.ITeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -33,30 +32,30 @@ public class TeamServiceImpl implements ITeamService {
     }
 
     @Override
-    public List<StudentVO> findUserByTeamId(Long id){
+    public List<StudentVO> findUserByTeamId(Long id) {
         return teamMapper.findUserByTeamId(id);
     }
 
     @Override
-    public void joinTeam(String studentName, String email, Long teamId){
-        int count = teamMapper.checkIfExist(studentName,teamId);
-        if (count == 0){
-            teamMapper.joinTeam(studentName,email,teamId);
+    public void joinTeam(String studentName, String email, Long teamId) {
+        int count = teamMapper.checkIfExist(studentName, teamId);
+        if (count == 0) {
+            teamMapper.joinTeam(studentName, email, teamId);
         }
     }
 
     @Override
-    public int getCapacityByTeamId(Long teamId){
+    public int getCapacityByTeamId(Long teamId) {
         return teamMapper.getCapacityByTeamId(teamId);
     }
 
     @Override
     public void leaveTeam(StudentTeamDTO studentTeamDTO) {
         try {
-            if (studentTeamDTO.getSize() > 0){
+            if (studentTeamDTO.getSize() > 0) {
                 teamMapper.leaveTeam(studentTeamDTO.getUsername(), studentTeamDTO.getTeamId());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -66,10 +65,13 @@ public class TeamServiceImpl implements ITeamService {
         return teamMapper.getProjectByTeamId(teamId);
     }
 
+
+
     @Override
     @Transactional
+
     public void createTeam(TeamDTO teamDTO) {
-        try{
+        try {
             int groupNumber = teamDTO.getGroupNumber();
             for (int teamName = 1; teamName <= groupNumber; teamName++) {
                 teamMapper.createTeam(
@@ -81,17 +83,12 @@ public class TeamServiceImpl implements ITeamService {
                 );
                 Long teamId = teamMapper.checkTeamId(teamName, teamDTO.getCourseName());
                 ProjectDTO projectDTO = new ProjectDTO();
-                projectDTO.setProjectName(teamDTO.getMajor()+"-"+teamDTO.getCourseName()+"-team"+teamName);
+                projectDTO.setProjectName(teamDTO.getMajor() + "-" + teamDTO.getCourseName() + "-team" + teamName);
                 projectDTO.setTeamId(teamId);
-                Result<ProjectVO> result = gitlabClient.createProject(projectDTO, teamDTO.getMajor(), teamDTO.getCourseName());
-                teamMapper.updateTeamInfo(
-                        result.getData().getTeamId(),
-                        result.getData().getProjectId(),
-                        result.getData().getProjectUrl(),
-                        result.getData().getProjectAccessToken()
-                );
+                gitlabClient.createProject(projectDTO, teamDTO.getMajor(), teamDTO.getCourseName());
+                Thread.sleep(5000);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

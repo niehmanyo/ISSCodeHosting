@@ -2,6 +2,7 @@ package com.iss.team.controller;
 
 
 import com.iss.api.client.UserClient;
+import com.iss.api.domain.dto.ProjectInfoDTO;
 import com.iss.api.domain.vo.UserVO;
 import com.iss.common.annotation.DistributedLock;
 import com.iss.common.constant.AuthMessageConstant;
@@ -19,6 +20,7 @@ import com.iss.team.service.ITeamService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.gitlab4j.api.models.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -121,6 +123,17 @@ public class TeamController {
         try{
             teamService.createTeam(teamDTO);
             return Result.success(TeamMessageConstant.CREATE_TEAM_SUCCESS);
+        }catch (Exception e){
+            return Result.error(extractErrorCode(e.getMessage()),e.getMessage());
+        }
+    }
+
+    @ApiOperation("Update Team Info")
+    @PostMapping("update")
+    public Result<String> updateTeamInfo(@RequestBody ProjectInfoDTO projectInfoDTO){
+        try{
+            teamService.updateTeamInfo(projectInfoDTO.getTeamId(), projectInfoDTO.getProjectId(), projectInfoDTO.getProjectUrl(), projectInfoDTO.getProjectAccessToken());
+            return Result.success(TeamMessageConstant.UPDATE_TEAM_SUCCESS);
         }catch (Exception e){
             return Result.error(extractErrorCode(e.getMessage()),e.getMessage());
         }

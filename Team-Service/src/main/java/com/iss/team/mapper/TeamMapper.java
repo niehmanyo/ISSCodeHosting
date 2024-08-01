@@ -4,7 +4,6 @@ import com.iss.team.domain.entity.Team;
 import com.iss.team.domain.vo.StudentVO;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public interface TeamMapper {
 
     Long getProjectByTeamId(Long teamId);
 
-    Long createTeam(Integer teamName, String courseName, String major, Integer capacity, LocalDateTime deadline);
+    void createTeam(Integer teamName, String courseName, String major, Integer capacity, LocalDateTime deadline);
 
     void deleteTeam(Long teamId);
 
@@ -31,5 +30,4 @@ public interface TeamMapper {
 
     Long checkTeamId(int teamName,String courseName);
 
-    void updateTeamInfo(Long teamId, Long projectId, String projectUrl, String projectAccessToken);
 }

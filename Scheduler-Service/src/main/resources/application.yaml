@@ -3,6 +3,9 @@ server:
 feign:
   okhttp:
     enabled: true # 开启OKHttp连接池支持
+spring:
+  quartz:
+    job-store-type: jdbc
 iss:
   swagger:
     title: Scheduler Service Documentation

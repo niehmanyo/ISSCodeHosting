@@ -3,7 +3,9 @@ package com.iss.gitlab.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.iss.api.client.TeamClient;
 import com.iss.api.client.UserClient;
+import com.iss.api.domain.dto.ProjectInfoDTO;
 import com.iss.api.domain.vo.UserVO;
 import com.iss.common.constant.GitlabMessageConstant;
 import com.iss.common.constant.GradeMessageConstant;
@@ -24,6 +26,7 @@ import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.Pager;
 import org.gitlab4j.api.models.*;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,7 +54,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, GitlabProject
 
     private final UserClient userClient;
 
-
+    private final TeamClient teamClient;
 
     private final IBranchService branchService;
 
@@ -59,6 +62,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, GitlabProject
 
     @Override
     @Transactional
+    @Async
     public ProjectVO createProject(ProjectDTO projectDTO, String majorName, String courseName) throws GitLabApiException {
         try {
             // 1. Get or Create group
@@ -99,12 +103,19 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, GitlabProject
             projectVO.setUserName("root");
             projectVO.setProjectAccessToken(accessToken.getToken());
 
+            ProjectInfoDTO projectInfoDTO = new ProjectInfoDTO();
+            projectInfoDTO.setProjectId(project.getId());
+            projectInfoDTO.setTeamId(projectDTO.getTeamId());
+            projectInfoDTO.setProjectUrl(project.getWebUrl()+".git");
+            projectInfoDTO.setProjectAccessToken(accessToken.getToken());
+
             return projectVO;
         } catch (GitLabApiException e) {
             // Handle GitLab API exceptions
             throw new GitLabApiException(GitlabMessageConstant.CREATE_PROJECT_FAILED + ". " + e.getMessage());
         }
     }
+
 
     @Override
     public void generateScript(HttpServletResponse response, Long projectId) throws GitLabApiException {

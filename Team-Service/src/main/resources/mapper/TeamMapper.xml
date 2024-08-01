@@ -25,7 +25,7 @@
     </select>
 
     <insert id="createTeam">
-        insert into iss_team (team_name,course_name,major_name,capacity,created_time,deadline)
+        insert into iss_team (team_name,course_name,major,capacity,created_time,deadline)
         values (#{teamName},#{courseName},#{major},#{capacity},NOW(),#{deadline});
     </insert>
     
@@ -40,13 +40,6 @@
         where student_name = #{username} and team_id = #{teamId}
     </delete>
 
-    <update id="updateTeamInfo">
-        update iss_team
-        set project_id = #{projectId},
-            project_url = #{projectUrl},
-            project_access_token = #{projectAccessToken}
-        where id = #{teamId}
-    </update>
 
     <delete id="deleteTeam">
         delete from iss_team
