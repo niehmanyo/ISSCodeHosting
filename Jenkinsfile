@@ -10,12 +10,21 @@ pipeline {
             }
         }
 
-        stage("Build"){
+        stage("Maven Build"){
             steps{
                sh '''ls
                 mvn clean package'''
             }
         }
+
+         stage("Docker Build"){
+                    steps{
+                       sh '''ls
+                        cd Auth-Service
+                        docker build -t Auth-Service
+                        docker run -p 8081:8081 Auth-Service'''
+                    }
+                }
 
     }
 }
