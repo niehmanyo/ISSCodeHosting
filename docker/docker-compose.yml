@@ -6,7 +6,6 @@ services:
     ports:
       - 8081:8081
 
-
   gateway:
     image: gateway:latest
     ports:
