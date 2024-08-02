@@ -27,7 +27,7 @@ public class LockConfig {
     public RedissonClient redissonClient() {
         Config config = new Config();
         config.useSingleServer()
-                .setAddress(String.format("redis://%s:%d", redisHost, redisPort));
+                .setAddress(String.format("redis://127.0.0.1:6379"));
         log.info(redisHost);
         return Redisson.create(config);
     }
