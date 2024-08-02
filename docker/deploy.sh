@@ -7,5 +7,6 @@ cd iss
 source main.sh
 
 echo "集成成功"
+echo "开始部署"
 docker-compose up -d
-echo "准备部署"
+echo "部署成功"

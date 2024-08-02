@@ -4,5 +4,5 @@ iss:
     pw: 123
 
   redis:
-    host: 127.0.0.1 # 100.107.234.78
+    host: localhost # 100.107.234.78
     port: 6379
