@@ -36,14 +36,6 @@ services:
     ports:
       - 8085:8085
 
-
-  redis:
-    image: redis
-    ports:
-      - 6379:6379
-
-
-
   grade:
     image: grade:latest
     ports:
