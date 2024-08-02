@@ -4,7 +4,7 @@ LABEL authors="NIEWENYU"
 
 WORKDIR /app
 
-COPY /Gitlab-Service.jarr .
+COPY /Gitlab-Service.jar .
 
 ENTRYPOINT ["java", "-jar","Gitlab-Service.jar"]
 
