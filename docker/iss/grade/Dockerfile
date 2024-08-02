@@ -4,8 +4,8 @@ LABEL authors="NIEWENYU"
 
 WORKDIR /app
 
-COPY /Auth-Service.jar .
+COPY /*.jar .
 
-ENTRYPOINT ["java", "-jar","Auth-Service.jar"]
+ENTRYPOINT ["java", "-jar","*.jar"]
 
 EXPOSE 8084
