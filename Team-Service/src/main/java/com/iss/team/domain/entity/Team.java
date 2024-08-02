@@ -23,8 +23,8 @@ public class Team {
     @Column(name = "major")
     private String major;
 
-    @Column(name = "course_name")
-    private String course_name;
+    @Column(name = "courseName")
+    private String courseName;
 
     @Column(name = "capacity")
     private Integer capacity;
