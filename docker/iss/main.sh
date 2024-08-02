@@ -21,9 +21,9 @@ echo "退出gitlab目录"
 cd ..
 
 cd course
-echo "启动gitlab服务"
+echo "启动course服务"
 source course.sh
-echo "退出gitlab目录"
+echo "退出course目录"
 cd ..
 
 cd grade

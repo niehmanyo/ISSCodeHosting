@@ -68,10 +68,10 @@ public class TeamController {
 
     @ApiOperation("Remove User From Project")
     @PostMapping("/remove")
-    public Result<String> removeUser(@RequestParam Long teamId,
+    public Result<String> removeUser(@RequestParam Long projectId,
                                      @RequestParam String email) throws GitLabApiException {
         try {
-            teamService.removeUser(teamId, email);
+            teamService.removeUser(projectId, email);
             return Result.success(GitlabMessageConstant.REMOVE_USER_SUCCESS);
         } catch (GitLabApiException e) {
             return Result.error(extractErrorCode(e.getMessage()), e.getMessage());
@@ -80,11 +80,11 @@ public class TeamController {
 
     @ApiOperation("Invite User To Project")
     @PostMapping("/invite")
-    public Result<String> inviteUser(@RequestParam Long teamId,
+    public Result<String> inviteUser(@RequestParam Long projectId,
                                      @RequestParam String email) throws GitLabApiException {
         try {
 
-            teamService.inviteUser(teamId, email);
+            teamService.inviteUser(projectId, email);
             return Result.success(GitlabMessageConstant.INVITE_USER_SUCCESS);
         } catch (GitLabApiException e) {
             return Result.error(extractErrorCode(e.getMessage()), e.getMessage());
@@ -105,17 +105,6 @@ public class TeamController {
         }
     }
 
-    public void inviteTeamMembers(Long teamId){
-        try{
-            Result<List<StudentVO>> result = teamClient.getMembersByTeamId(1L);
-            Result<Long> result1 = teamClient.getProjectByTeamId(teamId);
-            for (int i = 0;i<result.getData().size();i++) {
-                teamService.inviteUser(result1.getData(), result.getData().get(i).getEmail());
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 
     private int extractErrorCode(String errorMessage) {
         String[] parts = errorMessage.split(" ");

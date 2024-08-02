@@ -5,58 +5,48 @@ services:
     image: auth:latest
     ports:
       - 8081:8081
-    networks:
-      - my-net
+
 
   gateway:
     image: gateway:latest
     ports:
       - 8088:8088
-    networks:
-      - my-net
+
 
   gitlab:
     image: gitlab:latest
     ports:
       - 8082:8082
-    networks:
-      - my-net
+
 
   task:
     image: task:latest
     ports:
       - 8083:8083
-    networks:
-      - my-net
+
 
   team:
     image: team:latest
     ports:
       - 8086:8086
-    networks:
-      - my-net
+
 
   course:
     image: course:latest
     ports:
       - 8085:8085
-    networks:
-      - my-net
+
 
   redis:
     image: redis
     ports:
       - 6379:6379
-    networks:
-      - my-net
+
 
 
   grade:
     image: grade:latest
     ports:
       - 8084:8084
-    networks:
-      - my-net
 
-networks:
-  my-net:
+
