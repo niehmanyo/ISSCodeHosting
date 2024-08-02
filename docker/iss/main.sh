@@ -20,6 +20,12 @@ source gitlab.sh
 echo "退出gitlab目录"
 cd ..
 
+cd course
+echo "启动gitlab服务"
+source course.sh
+echo "退出gitlab目录"
+cd ..
+
 cd grade
 echo "启动grade服务"
 source grade.sh
