@@ -4,7 +4,7 @@ LABEL authors="NIEWENYU"
 
 WORKDIR /app
 
-COPY /target/Auth-Service.jar .
+COPY /Auth-Service.jar .
 
 ENTRYPOINT ["java", "-jar","Auth-Service.jar"]
 
