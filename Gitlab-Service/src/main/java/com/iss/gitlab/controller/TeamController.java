@@ -27,6 +27,7 @@ public class TeamController {
     @Autowired
     private ITeamService teamService;
 
+
     private final TeamClient teamClient;
 
     @ApiOperation("Get Team Members Interface")
@@ -67,10 +68,10 @@ public class TeamController {
 
     @ApiOperation("Remove User From Project")
     @PostMapping("/remove")
-    public Result<String> removeUser(@RequestParam Long projectId,
+    public Result<String> removeUser(@RequestParam Long teamId,
                                      @RequestParam String email) throws GitLabApiException {
         try {
-            teamService.removeUser(projectId, email);
+            teamService.removeUser(teamId, email);
             return Result.success(GitlabMessageConstant.REMOVE_USER_SUCCESS);
         } catch (GitLabApiException e) {
             return Result.error(extractErrorCode(e.getMessage()), e.getMessage());
@@ -79,10 +80,11 @@ public class TeamController {
 
     @ApiOperation("Invite User To Project")
     @PostMapping("/invite")
-    public Result<String> inviteUser(@RequestParam Long projectId,
+    public Result<String> inviteUser(@RequestParam Long teamId,
                                      @RequestParam String email) throws GitLabApiException {
         try {
-            teamService.inviteUser(projectId, email);
+
+            teamService.inviteUser(teamId, email);
             return Result.success(GitlabMessageConstant.INVITE_USER_SUCCESS);
         } catch (GitLabApiException e) {
             return Result.error(extractErrorCode(e.getMessage()), e.getMessage());

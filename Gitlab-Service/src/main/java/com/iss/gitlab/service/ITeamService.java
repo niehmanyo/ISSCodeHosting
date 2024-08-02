@@ -17,7 +17,7 @@ public interface ITeamService {
                     String username,
                     String name) throws GitLabApiException;
 
-    void inviteUser(Long projectId, String email) throws GitLabApiException;
+    void inviteUser(Long teamId, String email) throws GitLabApiException;
 
     void removeUser(Long projectId, String email) throws GitLabApiException;
 }

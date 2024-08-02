@@ -10,6 +10,7 @@ import com.iss.team.mapper.TeamMapper;
 
 import com.iss.team.service.ITeamService;
 import lombok.RequiredArgsConstructor;
+import org.gitlab4j.api.GitLabApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TeamServiceImpl implements ITeamService {
+
 
     @Autowired
     private TeamMapper teamMapper;
@@ -37,11 +39,17 @@ public class TeamServiceImpl implements ITeamService {
     }
 
     @Override
-    public void joinTeam(String studentName, String email, Long teamId) {
-        int count = teamMapper.checkIfExist(studentName, teamId);
-        if (count == 0) {
-            teamMapper.joinTeam(studentName, email, teamId);
+    public void joinTeam(String studentName, String email, Long teamId) throws GitLabApiException {
+        try{
+            int count = teamMapper.checkIfExist(studentName, teamId);
+            if (count == 0) {
+                gitlabClient.inviteUser(teamId,email);
+                teamMapper.joinTeam(studentName, email, teamId);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
     }
 
     @Override

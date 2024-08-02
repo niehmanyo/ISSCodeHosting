@@ -1,7 +1,10 @@
 package com.iss.gitlab.service.impl;
 
 import com.iss.common.constant.GitlabMessageConstant;
+import com.iss.gitlab.domain.vo.ProjectDetailVO;
 import com.iss.gitlab.domain.vo.ProjectVO;
+import com.iss.gitlab.service.IBranchService;
+import com.iss.gitlab.service.IProjectService;
 import com.iss.gitlab.service.ITeamService;
 import lombok.RequiredArgsConstructor;
 import org.gitlab4j.api.GitLabApi;
@@ -21,6 +24,7 @@ public class TeamServiceImpl implements ITeamService {
 
     private final GitLabApi gitLabApi;
 
+    private final IProjectService projectService;
 
     @Override
     public List<Member> getTeamMembers(Long projectId) throws GitLabApiException {
@@ -64,10 +68,11 @@ public class TeamServiceImpl implements ITeamService {
 
     @Override
     @Async
-    public void inviteUser(Long projectId, String email) throws GitLabApiException{
+    public void inviteUser(Long teamId, String email) throws GitLabApiException{
         try{
+            ProjectDetailVO projectDetailVO = projectService.getProjectByTeamId(teamId);
             User user = gitLabApi.getUserApi().getUserByEmail(email);
-            gitLabApi.getProjectApi().addMember(projectId,user.getId(), AccessLevel.DEVELOPER);
+            gitLabApi.getProjectApi().addMember(projectDetailVO.getTeamId(),user.getId(), AccessLevel.DEVELOPER);
         }catch (GitLabApiException e){
             throw new GitLabApiException(GitlabMessageConstant.INVITE_USER_FAILED + ". " + e.getMessage());
         }
@@ -75,10 +80,11 @@ public class TeamServiceImpl implements ITeamService {
 
     @Override
     @Async
-    public void removeUser(Long projectId, String email) throws GitLabApiException{
+    public void removeUser(Long teamId, String email) throws GitLabApiException{
         try{
             User user = gitLabApi.getUserApi().getUserByEmail(email);
-            gitLabApi.getProjectApi().removeMember(projectId, user.getId());
+            ProjectDetailVO projectDetailVO = projectService.getProjectByTeamId(teamId);
+            gitLabApi.getProjectApi().removeMember(projectDetailVO.getGitlabProjectId(), user.getId());
         }catch (GitLabApiException e){
             throw new GitLabApiException(GitlabMessageConstant.REMOVE_USER_FAILED + ". " + e.getMessage());
         }

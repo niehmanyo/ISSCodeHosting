@@ -33,7 +33,7 @@ public interface GitlabClient {
     Result<List<Commit>> getBranchCommits(@PathVariable("projectId") Long projectId, @RequestParam String branchName);
 
     @PostMapping("teams/invite")
-    Result<String> inviteUser(@RequestParam Long projectId, @RequestParam String email) throws GitLabApiException;
+    Result<String> inviteUser(@RequestParam Long teamId, @RequestParam String email) throws GitLabApiException;
 
     @PostMapping("teams/signup")
     Result<User> signUpUser(@RequestParam String email,
@@ -42,6 +42,6 @@ public interface GitlabClient {
     ) throws GitLabApiException;
 
     @PostMapping("teams/remove")
-    Result<String> removeUser(@RequestParam Long projectId,
+    Result<String> removeUser(@RequestParam Long teamId,
                                      @RequestParam String email) throws GitLabApiException;
 }
