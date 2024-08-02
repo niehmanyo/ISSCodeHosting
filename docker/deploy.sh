@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # copy jar
 echo "开始集成"
