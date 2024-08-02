@@ -12,21 +12,15 @@ public class TeamVO {
     @Id
     private Long id;
 
-    private String project_url;
+    private Integer team_name;
 
-    private String team_name;
-
-    private Long project_id;
-
-    private String major_name;
+    private String major;
 
     private Integer capacity;
 
     private String course_name;
 
     private LocalDateTime deadline;
-
-    private String project_access_token;
 
     private List<StudentVO> users;
 }
