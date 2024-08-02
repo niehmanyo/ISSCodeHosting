@@ -4,8 +4,8 @@ LABEL authors="NIEWENYU"
 
 WORKDIR /app
 
-COPY /*.jar .
+COPY /Grade-Service.jar .
 
-ENTRYPOINT ["java", "-jar","*.jar"]
+ENTRYPOINT ["java", "-jar","Grade-Service.jar"]
 
 EXPOSE 8084

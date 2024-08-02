@@ -4,8 +4,8 @@ LABEL authors="NIEWENYU"
 
 WORKDIR /app
 
-COPY /*.jar .
+COPY /Team-Service-1.0.0.jar .
 
-ENTRYPOINT ["java", "-jar","*.jar"]
+ENTRYPOINT ["java", "-jar","Team-Service-1.0.0.jar"]
 
 EXPOSE 8086

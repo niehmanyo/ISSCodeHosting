@@ -4,8 +4,8 @@ LABEL authors="NIEWENYU"
 
 WORKDIR /app
 
-COPY /*.jar .
+COPY /CodeHosting-Gateway.jar .
 
-ENTRYPOINT ["java", "-jar","*.jar"]
+ENTRYPOINT ["java", "-jar","CodeHosting-Gateway.jar"]
 
 EXPOSE 8088

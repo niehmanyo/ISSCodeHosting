@@ -4,8 +4,8 @@ LABEL authors="NIEWENYU"
 
 WORKDIR /app
 
-COPY /*.jar .
+COPY /Task-Service.jar .
 
-ENTRYPOINT ["java", "-jar","*.jar"]
+ENTRYPOINT ["java", "-jar","Task-Service.jar"]
 
 EXPOSE 8083

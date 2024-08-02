@@ -4,8 +4,8 @@ LABEL authors="NIEWENYU"
 
 WORKDIR /app
 
-COPY /*.jar .
+COPY /Gitlab-Service.jarr .
 
-ENTRYPOINT ["java", "-jar","*.jar"]
+ENTRYPOINT ["java", "-jar","Gitlab-Service.jar"]
 
 EXPOSE 8082
