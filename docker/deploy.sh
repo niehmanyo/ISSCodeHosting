@@ -1,6 +1,11 @@
 #!/bin/sh
 
 # copy jar
-echo "begin copy jar"
-cp -r ../Auth-Service/target/*.jar
-cp
+echo "开始集成"
+
+cd iss
+source ./main.sh
+
+echo "集成成功"
+docker-compose up -d
+echo "准备部署"

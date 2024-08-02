@@ -1,0 +1,33 @@
+version: '2.2'
+
+services:
+  auth:
+    image: auth:latest
+    ports:
+      - 8081:8081
+
+  gateway:
+    image: gateway:latest
+    ports:
+      - 8088:8088
+
+  gitlab:
+    image: gitlab:latest
+    ports:
+      - 8082:8082
+
+  task:
+    image: task:latest
+    ports:
+      - 8083:8083
+
+  team:
+    image: team:latest
+    ports:
+      - 8086:8086
+
+  grade:
+    image: grade:latest
+    ports:
+      - 8084:8084
+
