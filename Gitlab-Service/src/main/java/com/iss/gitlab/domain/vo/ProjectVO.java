@@ -14,4 +14,8 @@ public class ProjectVO {
     private String userName;
 
     private String projectAccessToken;
+
+    private String major;
+
+    private String courseName;
 }

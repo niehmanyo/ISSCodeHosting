@@ -1,6 +1,7 @@
 package com.iss.team.controller;
 
 
+import com.iss.api.client.GitlabClient;
 import com.iss.api.client.UserClient;
 import com.iss.api.domain.dto.ProjectInfoDTO;
 import com.iss.api.domain.vo.UserVO;
@@ -38,6 +39,8 @@ public class TeamController {
 
     private final UserClient userClient;
 
+    private final GitlabClient gitlabClient;
+
     /**
      *
      * 这个是获取所有的Team消息，每个Team里面的成员信息
@@ -50,9 +53,12 @@ public class TeamController {
             List<Team> teams = teamService.getAllTeams(courseName);
             List<TeamVO> teamVOS = BeanUtils.copyList(teams, TeamVO.class);
             List<StudentVO> users;
+            String url;
             for (int i = 0; i < teams.size(); i++){
                 users = teamService.findUserByTeamId(teamVOS.get(i).getId());
+                url = gitlabClient.getProjectByTeamId(teamVOS.get(i).getId()).getData().getCentralizedProjectUrl();
                 teamVOS.get(i).setUsers(users);
+                teamVOS.get(i).setUrl(url);
             }
             return Result.success(TeamMessageConstant.GET_TEAM_SUCCESSFUL,teamVOS);
         }catch (Exception e) {

@@ -1,6 +1,7 @@
 package com.iss.api.client;
 
 import com.iss.api.domain.dto.ProjectDTO;
+import com.iss.api.domain.vo.ProjectDetailVO;
 import com.iss.api.domain.vo.ProjectVO;
 import com.iss.common.result.Result;
 import org.gitlab4j.api.GitLabApiException;
@@ -44,4 +45,7 @@ public interface GitlabClient {
     @PostMapping("teams/remove")
     Result<String> removeUser(@RequestParam Long teamId,
                                      @RequestParam String email) throws GitLabApiException;
+
+    @GetMapping("projects/get/{teamId}")
+    Result<ProjectDetailVO> getProjectByTeamId(@PathVariable("teamId") Long teamId);
 }

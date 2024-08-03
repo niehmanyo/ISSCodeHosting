@@ -22,5 +22,7 @@ public class TeamVO {
 
     private LocalDateTime deadline;
 
+    private String url;
+
     private List<StudentVO> users;
 }

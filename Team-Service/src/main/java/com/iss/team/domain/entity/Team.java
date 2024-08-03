@@ -17,21 +17,16 @@ public class Team {
     @Id
     private Long id;
 
-    @Column(name = "team_name")
     private Integer team_name;
 
-    @Column(name = "major")
     private String major;
 
-    @Column(name = "course_name")
     private String course_name;
 
-    @Column(name = "capacity")
     private Integer capacity;
 
-    @Column(name = "deadline")
     private LocalDateTime deadline;
 
-
+    private String project_url;
 
 }
