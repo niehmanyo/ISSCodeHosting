@@ -39,7 +39,11 @@ public class GradeServiceImpl implements IGradeService {
         // Replace GitHub account with username
         Map<String, Map<String, Integer>> commitsCount = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : commitsCountData.entrySet()) {
-            String username = entry.getKey();
+            String githubAccount = entry.getKey();
+            String username = userClient.searchUsernameByGithubAccount(githubAccount).getData();
+            if (username == null || username.isEmpty()) {
+                username = githubAccount;
+            }
             commitsCount.put(username, entry.getValue());
         }
         return commitsCount;
@@ -54,7 +58,11 @@ public class GradeServiceImpl implements IGradeService {
         // Replace GitHub account with username and sum commit counts
         Map<String, Integer> commitsCount = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : commitsCountData.entrySet()) {
-            String username = entry.getKey();
+            String githubAccount = entry.getKey();
+            String username = userClient.searchUsernameByGithubAccount(githubAccount).getData();
+            if (username == null || username.isEmpty()) {
+                username = githubAccount;
+            }
             int totalCommitsCount = entry.getValue().values().stream().mapToInt(Integer::intValue).sum();
             commitsCount.put(username, totalCommitsCount);
         }
@@ -70,7 +78,11 @@ public class GradeServiceImpl implements IGradeService {
         // Replace GitHub account with username
         Map<String, Map<String, Integer>> linesChanged = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : linesChangedResultData.entrySet()) {
-            String username = entry.getKey();;
+            String githubAccount = entry.getKey();
+            String username = userClient.searchUsernameByGithubAccount(githubAccount).getData();
+            if (username == null || username.isEmpty()) {
+                username = githubAccount;
+            }
             linesChanged.put(username, entry.getValue());
         }
         return linesChanged;
@@ -85,7 +97,11 @@ public class GradeServiceImpl implements IGradeService {
         // Replace GitHub account with username and sum lines changed
         Map<String, Integer> linesChanged = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : linesChangedResultData.entrySet()) {
-            String username = entry.getKey();;
+            String githubAccount = entry.getKey();
+            String username = userClient.searchUsernameByGithubAccount(githubAccount).getData();
+            if (username == null || username.isEmpty()) {
+                username = githubAccount;
+            }
             int totalLinesChanged = entry.getValue().values().stream().mapToInt(Integer::intValue).sum();
             linesChanged.put(username, totalLinesChanged);
         }
