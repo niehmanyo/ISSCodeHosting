@@ -43,7 +43,6 @@ public class TeamServiceImpl implements ITeamService {
         try{
             int count = teamMapper.checkIfExist(studentName, teamId);
             if (count == 0) {
-                gitlabClient.inviteUser(teamId,email);
                 teamMapper.joinTeam(studentName, email, teamId);
             }
         }catch (Exception e){
