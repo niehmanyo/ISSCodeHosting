@@ -1,6 +1,10 @@
 server:
   port: 8081
 spring:
+  redis:
+    host: 43.134.14.89
+    port: 6379
+
   mail:
     # 配置 SMTP 服务器地址
     host: smtp.qq.com
