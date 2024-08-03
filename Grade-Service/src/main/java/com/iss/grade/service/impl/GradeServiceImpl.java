@@ -39,11 +39,7 @@ public class GradeServiceImpl implements IGradeService {
         // Replace GitHub account with username
         Map<String, Map<String, Integer>> commitsCount = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : commitsCountData.entrySet()) {
-            String githubAccount = entry.getKey();
-            String username = userClient.searchUsernameByGithubAccount(githubAccount).getData();
-            if (username == null || username.isEmpty()) {
-                username = githubAccount;
-            }
+            String username = entry.getKey();
             commitsCount.put(username, entry.getValue());
         }
         return commitsCount;
