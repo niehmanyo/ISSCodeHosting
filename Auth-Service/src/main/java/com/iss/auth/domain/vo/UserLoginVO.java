@@ -8,4 +8,5 @@ public class UserLoginVO {
     private String username;
     private String accessToken;
     private String refreshToken;
+    private String schoolEmail;
 }

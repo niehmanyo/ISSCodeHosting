@@ -91,6 +91,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         userLoginVO.setUsername(user.getUsername());
         userLoginVO.setAccessToken(accessToken);
         userLoginVO.setRefreshToken(refreshToken);
+        userLoginVO.setSchoolEmail(user.getSchoolEmail());
         return userLoginVO;
     }
 
@@ -124,6 +125,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         userLoginVO.setUsername(user.getUsername());
         userLoginVO.setAccessToken(accessToken);
         userLoginVO.setRefreshToken(refreshToken);
+        userLoginVO.setSchoolEmail(user.getSchoolEmail());
         return userLoginVO;
     }
 
@@ -186,6 +188,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         userLoginVO.setUsername(user.getUsername());
         userLoginVO.setAccessToken(accessToken);
         userLoginVO.setRefreshToken(refreshToken);
+        userLoginVO.setSchoolEmail(user.getSchoolEmail());
         // 10. Create Related User in Gitlab
         gitlabClient.signUpUser(user.getSchoolEmail(), user.getUsername(), user.getUsername());
 

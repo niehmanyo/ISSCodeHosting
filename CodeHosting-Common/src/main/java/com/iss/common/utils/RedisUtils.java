@@ -41,6 +41,6 @@ public class RedisUtils {
         startRedisServer();
 
         // 登录到Redis服务器
-        loginRedisCli("localhost", 6379, "123456");
+        loginRedisCli("http://43.134.14.89/", 6379, "123456");
     }
 }

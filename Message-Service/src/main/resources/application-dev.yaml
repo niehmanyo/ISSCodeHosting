@@ -3,5 +3,5 @@ iss:
     host: # 100.107.234.78 # 修改为你自己的虚拟机IP地址
     pw: 123 # 修改为docker中的MySQL密码
   redis:
-    host: localhost # 100.107.234.78 #目前还是localhost
+    host: 43.134.14.89 # 100.107.234.78 #目前还是localhost
     port: 6379
