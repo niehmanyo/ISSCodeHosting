@@ -27,7 +27,7 @@ public interface GitlabClient {
     @GetMapping("projects/{projectId}/changed/lines")
     Result<Map<String, Map<String, Integer>>> getLinesChanged(@PathVariable("projectId") Long projectId);
 
-    @GetMapping("projects/{projectId}")
+    @GetMapping("branches/{projectId}")
     Result<List<Branch>> getBranches(@PathVariable("projectId") Long projectId);
 
     @GetMapping("projects/{projectId}/branch/commits")
