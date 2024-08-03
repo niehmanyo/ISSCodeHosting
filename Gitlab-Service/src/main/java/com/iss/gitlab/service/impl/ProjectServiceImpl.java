@@ -315,6 +315,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, GitlabProject
         List<Member> teamMembers = teamService.getTeamMembers(projectDetailVO.getGitlabProjectId());
         List<String> memberNames = teamMembers.stream()
                 .map(Member::getUsername)
+                .filter(username -> !username.startsWith("project"))
                 .collect(Collectors.toList());
         projectDetailVO.setContributors(memberNames);
         return projectDetailVO;
