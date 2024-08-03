@@ -54,8 +54,6 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, GitlabProject
 
     private final UserClient userClient;
 
-    private final TeamClient teamClient;
-
     private final IBranchService branchService;
 
     private final ITeamService teamService;

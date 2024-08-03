@@ -58,11 +58,7 @@ public class GradeServiceImpl implements IGradeService {
         // Replace GitHub account with username and sum commit counts
         Map<String, Integer> commitsCount = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : commitsCountData.entrySet()) {
-            String githubAccount = entry.getKey();
-            String username = userClient.searchUsernameByGithubAccount(githubAccount).getData();
-            if (username == null || username.isEmpty()) {
-                username = githubAccount;
-            }
+            String username = entry.getKey();
             int totalCommitsCount = entry.getValue().values().stream().mapToInt(Integer::intValue).sum();
             commitsCount.put(username, totalCommitsCount);
         }
@@ -78,11 +74,7 @@ public class GradeServiceImpl implements IGradeService {
         // Replace GitHub account with username
         Map<String, Map<String, Integer>> linesChanged = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : linesChangedResultData.entrySet()) {
-            String githubAccount = entry.getKey();
-            String username = userClient.searchUsernameByGithubAccount(githubAccount).getData();
-            if (username == null || username.isEmpty()) {
-                username = githubAccount;
-            }
+            String username = entry.getKey();;
             linesChanged.put(username, entry.getValue());
         }
         return linesChanged;
@@ -97,11 +89,7 @@ public class GradeServiceImpl implements IGradeService {
         // Replace GitHub account with username and sum lines changed
         Map<String, Integer> linesChanged = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : linesChangedResultData.entrySet()) {
-            String githubAccount = entry.getKey();
-            String username = userClient.searchUsernameByGithubAccount(githubAccount).getData();
-            if (username == null || username.isEmpty()) {
-                username = githubAccount;
-            }
+            String username = entry.getKey();;
             int totalLinesChanged = entry.getValue().values().stream().mapToInt(Integer::intValue).sum();
             linesChanged.put(username, totalLinesChanged);
         }

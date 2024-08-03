@@ -34,16 +34,16 @@ public class GradeController {
         }
     }
 
-    @ApiOperation("Get Each Branch Commits Count Interface")
-    @GetMapping("/{projectId}/commits/count")
-    public Result<Map<String, Map<String, Integer>>> getCommitsCount(@PathVariable("projectId") Long projectId){
-        try {
-            Map<String, Map<String, Integer>> commitCountsByAuthor = gradeService.calculateCommitCounts(projectId);
-            return Result.success(GradeMessageConstant.GET_COMMITS_SUCCESS, commitCountsByAuthor);
-        } catch (Exception e) {
-            return Result.error(extractErrorCode(e.getMessage()), e.getMessage());
-        }
-    }
+//    @ApiOperation("Get Each Branch Commits Count Interface")
+//    @GetMapping("/{projectId}/commits/count")
+//    public Result<Map<String, Map<String, Integer>>> getCommitsCount(@PathVariable("projectId") Long projectId){
+//        try {
+//            Map<String, Map<String, Integer>> commitCountsByAuthor = gradeService.calculateCommitCounts(projectId);
+//            return Result.success(GradeMessageConstant.GET_COMMITS_SUCCESS, commitCountsByAuthor);
+//        } catch (Exception e) {
+//            return Result.error(extractErrorCode(e.getMessage()), e.getMessage());
+//        }
+//    }
 
     @ApiOperation("Get All Commits Count Interface")
     @GetMapping("/{projectId}/commits/count/all")
@@ -56,16 +56,16 @@ public class GradeController {
         }
     }
 
-    @ApiOperation("Get Each Branch Lines Changed Interface")
-    @GetMapping("/{projectId}/changed/lines")
-    public Result<Map<String, Map<String, Integer>>> getLinesChanged(@PathVariable("projectId") Long projectId){
-        try {
-            Map<String, Map<String, Integer>> linesChangedByAuthor = gradeService.calculateLinesChanged(projectId);
-            return Result.success(GradeMessageConstant.GET_LINES_SUCCESS, linesChangedByAuthor);
-        } catch (Exception e) {
-            return Result.error(extractErrorCode(e.getMessage()), e.getMessage());
-        }
-    }
+//    @ApiOperation("Get Each Branch Lines Changed Interface")
+//    @GetMapping("/{projectId}/changed/lines")
+//    public Result<Map<String, Map<String, Integer>>> getLinesChanged(@PathVariable("projectId") Long projectId){
+//        try {
+//            Map<String, Map<String, Integer>> linesChangedByAuthor = gradeService.calculateLinesChanged(projectId);
+//            return Result.success(GradeMessageConstant.GET_LINES_SUCCESS, linesChangedByAuthor);
+//        } catch (Exception e) {
+//            return Result.error(extractErrorCode(e.getMessage()), e.getMessage());
+//        }
+//    }
 
     @ApiOperation("Get All Lines Changed Interface")
     @GetMapping("/{projectId}/changed/lines/all")
