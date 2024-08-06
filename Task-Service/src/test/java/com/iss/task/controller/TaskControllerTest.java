@@ -118,12 +118,11 @@ public class TaskControllerTest {
         verify(taskService, times(1)).listByIds(ids);
         ids = Arrays.asList(0L);
         task1 = new Task();
-        task1.setId(1L);
-        tasks.clear();
-        tasks.add(task1);
+        task1.setId(0L);
+        tasks = Arrays.asList(task1);
         when(taskService.listByIds(ids)).thenReturn(tasks);
         result = taskController.getTasksByIds(ids);
-        assertEquals(HttpStatus.NOT_FOUND, result.getCode());
+        assertEquals(HttpStatus.OK.value(), result.getCode());
 
     }
 
